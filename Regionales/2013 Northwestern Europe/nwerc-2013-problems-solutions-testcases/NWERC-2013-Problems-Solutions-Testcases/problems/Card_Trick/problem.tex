@@ -1,0 +1,72 @@
+\tikzstyle{vertex}=[shape=rectangle,draw,minimum width=6mm]
+
+\begin{icpcproblem}{C}{Card Trick}{Tobias Werth}{2}
+I am learning magic tricks to impress my girlfriend Alice. My latest trick is
+a probabilistic one, i.e.\ it does work in most cases, but not in every case.
+To perform the trick, I first shuffle a set of many playing cards and put them all in
+one line with faces up on the table. Then Alice secretly selects one of the
+first ten cards (i.e.\ she chooses $x_0$, a secret number between $1$ and $10$
+inclusive) and skips cards repeatedly as follows: after having selected a card
+at position $x_i$ with a number $c(x_i)$ on its face, she will select the card
+at position $x_{i+1} = x_i+c(x_i)$.
+Jack ({\tt J}), Queen ({\tt Q}), and King ({\tt K}) count as $10$, Ace ({\tt
+A}) counts as $11$. You may assume that there are at least ten cards on the
+table.
+
+Alice stops this procedure as soon as there is no card at position
+$x_i+c(x_i)$. I then perform the same procedure from a randomly selected
+starting position that may be different from the position selected by
+Alice.  It turns out that often, I end up at the same position. Alice is
+very impressed by this trick.
+
+However, I am more interested in the underlying math. Given my randomly
+selected starting position and the card faces of every selected card (including my final one), can
+you compute the probability that Alice chose a starting position ending up on the same
+final card? You may assume that her starting position is randomly chosen with
+uniform probability (between $1$ and $10$ inclusive).
+I forgot to note the cards that I skipped, so these cards are unknown.
+You may assume that the card face of every single of the unknown cards is independent of the other
+card faces and random with uniform probability out of the possible card faces
+(i.e.\ {\tt2}-{\tt10}, {\tt J}, {\tt Q}, {\tt K}, and {\tt A}).
+
+\begin{figure}[h]
+\begin{center}
+\begin{tikzpicture}[auto, swap, ->, >=stealth, semithick]
+	\foreach \name/\pos in {{?/0}, {2/1}, {?/2}, {3/3}, {?/4}, {?/5}, {5/6}, {?/7}, {?/8}, {?/9}, {?/10}, {3/11}, {?/12}, {?/13}}
+	\node[vertex,rounded corners=3pt, minimum size=19pt] (sort\pos) at (\pos,-2) {{\name}};
+	\node[vertex,rounded corners=3pt, minimum size=19pt, fill=gray!50] (sort14) at (14,-2) {{Q}};
+	\node[] (foo) at (15,-2) {{\ldots}};
+\foreach \source/\dest/\style in {1/3/bend left, 3/6/bend left, 6/11/bend left, 11/14/bend left}
+	\path (sort\source) edge[bend right=50] (sort\dest);
+\end{tikzpicture}
+\mbox{}\vskip -4.5em\mbox{}\\
+\end{center}
+\caption{Illustration of first sample input: my starting position is $2$, so I
+start selecting that card. Then I keep skipping cards depending on the card's
+face. This process iterates until there are not enough cards to skip (in this
+sample: {\tt Q}). The final {\tt Q} card is followed by 0 to 9 unknown cards, since {\tt Q} counts as $10$. }
+\end{figure}
+
+\sectiontitle{Input}
+
+For each test case:
+
+\begin{itemize}
+\item A line containing two integers $n$ $(1\le n\le100)$ and $m$ ($1\le m\le10$) where $n$
+	is the number of selected cards and $m$ is the $1$-based position of my first selected card.
+\item A line with $n$ tokens that specify the $n$ selected card faces (in order,
+	including the final card). Each card face is given either as an integer $x$
+	($2\le x\le10$) or as a single character ({\tt J}, {\tt Q}, {\tt K}, or
+	{\tt A} as specified above).
+\end{itemize}
+
+\newpage
+\sectiontitle{Output}
+
+For each test case, print one line containing the probability that Alice
+chooses a starting position that leads to the same final card.
+Your output should have an absolute error of at most $10^{-7}$.
+
+\sampleio{sample}
+
+\end{icpcproblem}
