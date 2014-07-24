@@ -1,20 +1,25 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author USERE
- */
-public class TrainSwap {
 
     /**
-     * @param args the command line arguments
+     * Order The wagons and register # of swaps
+     *	In:
+     *	3 <- Test Cases
+     *  3 <- Wagons
+     *  1 3 2 <- Carriage current order
+     *  4
+     *  4 3 2 1
+     *  Out:
+     *	Optimal train swapping takes 6 swaps.
+	 * 	Optimal train swapping takes 1 swaps.
+     *
      */
+
+
+public class TrainSwap {
+
     public static void main(String[] args) {
         Scanner scan=new Scanner(System.in);
         

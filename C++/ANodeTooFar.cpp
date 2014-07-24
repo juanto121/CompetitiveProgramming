@@ -46,7 +46,6 @@ int main(){
 		int index = 0;
 		nodes.clear();
 		memset(graph,-1, sizeof(graph) );
-		//printg();
 		int v, w;
 		int tnodes = 0;
 		for(int i = 0; i < edges ; i++){
