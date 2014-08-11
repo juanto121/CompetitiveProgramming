@@ -12,9 +12,9 @@ class DigitalSatire{
 
 		Scanner scan = new Scanner(System.in);
 		int cases = Integer.parseInt(scan.nextLine());
-		StringBuilder stb = new StringBuilder();
+		
 		for(int i = 0; i < cases; i++){
-			
+			StringBuilder stb = new StringBuilder();
 			int configuration = 0;
 			for(int j = 0; j < 7; j++){
 				stb.append(scan.nextLine());
@@ -27,12 +27,12 @@ class DigitalSatire{
 
 			System.out.println(String.format("Case %d:",i+1));	
 			boolean correct = true;
-     		if( desc.charAt(91)-0 >= aVar && desc.charAt(91)-0 <= zVar && desc.charAt(65)-0 >= aVar && desc.charAt(71)-0 <= zVar )
+     		if( desc.charAt(91)-0 >= aVar && desc.charAt(91)-0 <= zVar && desc.charAt(65)-0 >= aVar && desc.charAt(65)-0 <= zVar )
 			{
 				//configuration = 0;
-				StrW left = makeStrW(92,98,desc);
-				StrW rigth = makeStrW(66,72,desc);
-				if(left.weight<rigth.weight){
+				StrW left = makeStrW(91,97,desc);
+				StrW rigth = makeStrW(65,71,desc);
+				if( !(left.weight>rigth.weight) ){
 					correctConfig(left,rigth);
 					correct = false;
 				}	
@@ -55,7 +55,7 @@ class DigitalSatire{
 				configuration = 2;
 				StrW left = makeStrW(55,61,desc);
 				StrW rigth = makeStrW(101,107,desc);
-				if(left.weight>rigth.weight){
+				if(!(left.weight<rigth.weight)){
 					 correctConfig(left,rigth);
 					 correct=false;
 				}
@@ -76,26 +76,32 @@ class DigitalSatire{
 		StringBuilder con;
 		int initL, initR;
 		int finL, finR;
+		int crl ,crr;
+		
 		if(l.weight==r.weight){
 			con = new StringBuilder(conf[1]);
-			initL = 92; initR = 66;
-			finL = 98;  finR= 72;
+			initL = 73; initR = 83;
+			finL = 79;  finR= 89;
+			crl = 4; crr=4;
 		}else{
 			if(l.weight<r.weight){
-				con = new StringBuilder(conf[0]);
-				initL = 92; initR = 66;
-				finL = 98;  finR= 72;
-			}else{
 				con = new StringBuilder(conf[2]);
-				initL = 92; initR = 66;
-				finL = 98;  finR= 72;
+				initL = 55; initR = 101;
+				finL = 61;  finR= 107;
+				crl = 3; crr=5;
+			}else{
+				con = new StringBuilder(conf[0]);
+				initL = 91; initR = 65;
+				finL = 97;  finR= 71;
+				crl=5; crr = 3;
 			}
 		}
-		for(int i = initL; i < l.str.length(); i++){
-			con.setCharAt(i,l.str.charAt(i-initL));
+		
+		for(int i = initL; i < initL+l.str.length(); i++){
+			con.setCharAt(i+crl,l.str.charAt(i-initL));
 		}
-		for(int j = initR; j < r.str.length(); j++){
-			con.setCharAt(j,r.str.charAt(j-initR));
+		for(int j = initR; j < initR+r.str.length(); j++){
+			con.setCharAt(j+crr,r.str.charAt(j-initR));
 		}
 		
 		System.out.print(con.toString());
@@ -110,7 +116,7 @@ class DigitalSatire{
 		int sum = 0;
 		int i = init;
 		for(i = init; i < fin && desc.charAt(i) != '.' ; i++){
-			sum += w[desc.charAt(i)-0];
+			sum += w[desc.charAt(i)-'A'];
 		}
 		StrW strw = new StrW(sum,desc.substring(init,i));
 		return strw;
@@ -141,7 +147,7 @@ class DigitalSatire{
 					   "../..\\..||/......\\\n"+
 					   "./....\\.||\\______/\n"+
 					   "/......\\||........\n"+
-					   "\\______/||........";
+					   "\\______/||........\n";
 		
 		String confii = "........||........\n"+
 						".../\\...||.../\\...\n"+
@@ -149,7 +155,7 @@ class DigitalSatire{
 						"./....\\.||./....\\.\n"+
 						"/......\\||/......\\\n"+
 						"\\______/||\\______/\n"+
-			  			"........||........";
+			  			"........||........\n";
 
 
 		String confiii = 	".../\\...||........\n"+
@@ -174,6 +180,4 @@ class StrW{
 		str = s;
 	}
 }
-
-
 
