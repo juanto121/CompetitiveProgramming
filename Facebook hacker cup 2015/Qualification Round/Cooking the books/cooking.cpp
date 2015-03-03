@@ -1,79 +1,76 @@
 #include <iostream>
 #include <cstdio>
-#include <cstring>
 #include <string>
+#include <climits>
 using namespace std;
-int highest(int num, int low_high[]){
-	int high = 0;
-	int low = 1e9;
-	int lowbit = 0;
-	int current = num;
-	int pos = 0;
-	int lowpos,highpos;
-	while(current != 0){
-		
-		lowbit = current % 10;
-		if( lowbit > high){	
-			high = lowbit;
-			highpos = pos;
-		}if(lowbit < low)
-		{
-			low = lowbit;
-			lowpos = pos;
+
+void lowHighIndexes(int * low, int *high, const string number){
+	
+	int max = 0;
+	int min = INT_MAX;
+	
+	int max_i = 0;
+	int min_i = 0;
+
+	int lenght = number.length();
+	
+	for(int i = 0; i < lenght; i++){
+		int num = number[i] - '0';
+		if( num  > max ){
+			 max = num;
+			 max_i = i;
+		}else if(num < min && num > 0){
+			 min = num;
+			 min_i = i;	
 		}
-		current = current / 10;
-		pos ++;
 	}
 	
-	low_high[0] = lowpos;
-	low_high[1] = highpos;
-	low_high[2] = low;
-	low_high[3] = high;
-	low_high[4] = pos;
+	*low = min_i;
+	*high = max_i;
+	
 }
-int main(){
-	int t, casenum;
-	casenum = 1;
-	t = 0;
-	scanf("%d",&t);
-	int low_high[5];
-	int lenght;
-	memset(low_high,0,sizeof(low_high));
-	int swaplow,swaphigh;
+
+string swapIndexes(string s, int index){
 	
-	while(t--){
-		int number = 0;
-		swaplow = 0;
-		swaphigh = 0;
-		scanf("%d",&number);
-		int tempn = number;
-		highest(tempn,low_high);
-		cout << low_high[0] << " " << low_high[1] << " " << low_high[4] << endl;
-		int lowpos = low_high[0];
-		int highpos = low_high[1];
-		lenght = low_high[4];
-		string lowest = "";
-		for(int i = 0; i < lenght-1; i++){
-			if(i == lowpos){
-				lowest = to_string(low_high[lenght-1]) + lowest;
-				swaplow = tempn%10;
-			}else{
-				lowest = to_string(tempn % 10) + lowest;
-			}
-			tempn /= 10;
-		}
-		printf("%d",low_high[2]);
-		tempn = number;
-		for(int i = 0; i < lenght; i++){
-			if(i == highpos){
-				printf("%d",low_high[lenght-1]);
-			}else{
-				printf("%d",tempn%10);
-			}
-			tempn /= 10;
-		}
-		printf("%d",low_high[3]);
+ 	string stemp = s;
+ 	s[0] = s[index];
+ 	s[index] = stemp[0];
+ 	return s;
+}
+
+int main(){
+	
+	/* TODO 
+		Largest: Take the rightmost largest number & 
+		put it in the leftmost position that is different
+		from itself 
+		
+		Smallest: Take the rightmost lowest number (lower than the leftmost & different from 0) & 
+		put it in the leftmost position that is different
+		from itself, check if the lowest is 0 then skip
+		the leftmost position and swap with the first different
+		number.
+	*/
+	
+	int t, casenum;
+	scanf("%d",&t);
+	for(casenum = 0; casenum < t; casenum++){
+		string number;
+	 	cin >> number;
+		
+		int highest_num_index = 0; 
+		int lowest_num_index = 0;
+		
+		lowHighIndexes(&lowest_num_index, &highest_num_index, number);
+		
+		string lowest = swapIndexes(number,lowest_num_index);
+		string highest = swapIndexes(number,highest_num_index);
+		
+		printf("Case #%d: %s %s\n", casenum+1, lowest.c_str(), highest.c_str());
+		
+		
 	}
+
 }
 
 
