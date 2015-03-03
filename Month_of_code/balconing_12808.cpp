@@ -9,7 +9,7 @@ int main(){
 	int cases = 0;
 	scanf("%d",&cases);
 	for(int t = 0; t < cases; t++){
-		int L,D,H,V;
+		double L,D,H,V;
 		string result;
 		cin >> L >> D >> H >> V;
 		double time_to_hit = H / (gravity/2.0);
@@ -17,21 +17,14 @@ int main(){
 		
 		if( air_distance >D +500 && air_distance < D+L-500 ){
 			result = "POOL";
-			printf("%d %d\n",D+500,D+L-500);
-		}
-		
-		
-		if( (air_distance >= D-500 && air_distance <= D+500  )|| 
-		    (air_distance >= D+L-500 && air_distance <= D+L+500) ) {
-			result = "EDGE";
-			printf("%d %d %d %d\n",D-500,D+500,D+L-500,D+L+500);
-		}
-	
-		if(air_distance < D-500 || air_distance > D+L+500 ){
+		//	printf("%d %d\n",D+500,D+L-500);
+		}else if(air_distance < D-500 || air_distance > D+L+500 ){
 			result = "FLOOR";
-			printf("%d %d\n",D-500,D+L+500);
+		//	printf("%d %d\n",D-500,D+L+500);
+		}else{
+			result = "EDGE";
 		}
 		
-		printf("\n%s %f\n",result.c_str(), air_distance);
+		printf("%s\n",result.c_str());
 	}
 }
