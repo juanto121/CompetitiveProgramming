@@ -15,7 +15,7 @@ class center
 	static long precalc_centers[] = {8,49,288,1681,9800,57121,332928,1940449,11309768,65918161,384199200,2239277041l,13051463048l,76069501249l,443365544448l,2584123765441l,15061377048200l,87784138523761l};
 	public static void main (String[] args)
 	{
-		//findCenters();
+		findCenters();
 		Scanner scan = new Scanner(System.in);
 		while(true){
 			
