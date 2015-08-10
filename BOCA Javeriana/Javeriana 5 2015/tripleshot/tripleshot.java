@@ -12,10 +12,8 @@ public class tripleshot {
 	public static void main(String[] args) {
 		BufferedReader scan = new BufferedReader(new InputStreamReader(System.in));
 		Point2D enemies[] = new Point2D[3];
-
+		
 		try{
-
-			while( (scan.readLine())!=null ){
 			for(int e = 0; e < 3; e++){
 				String point[] = scan.readLine().split(" ");
 				Double x = Double.parseDouble(point[0]);
@@ -83,7 +81,7 @@ public class tripleshot {
 					System.out.print(String.format("%.10f %.10f%n",x,y));
 				}
 				
-			}
+			
 		}catch(IOException e){}
 	}
 
