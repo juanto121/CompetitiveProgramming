@@ -1,0 +1,74 @@
+﻿//Para verlo con syntax highligt: http://ideone.com/oLak2f
+import java.util.*; //Scanner , StringTokenizer
+import java.io.*;//Buffered reader
+
+class Main{
+	public static void main(String[] args) {
+		
+		/*
+			Lectura sencilla, pero lenta.
+		*/
+
+		Scanner scan = new Scanner(System.in);
+
+		//String
+		String s = scan.nextLine();
+
+		//Ints
+		int a = scan.nextInt();
+		//o si solo hay un int en una linea y estan combinados ints y Strings
+		int b = Integer.parseInt(scan.nextLine());
+
+		//Doubles
+		double d = scan.nextDouble();
+
+		//Lectura hasta final de archivo (EOF)
+		while(scan.hasNextLine()){
+
+		}
+
+		/*
+			tip: no combinar scan.nextInt() con scan.nextLine()
+			para evitar: 
+				http://stackoverflow.com/questions/13102045/skipping-nextline-after-using-next-nextint-or-other-nextfoo-methods
+		*/
+
+
+		/*
+			Lectura rapida, pero más codigo
+		*/
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		try{
+
+			//Lectura de String
+			String lineabf = br.readLine();
+
+		}catch(IOException e){
+
+		}
+
+		/*
+			Separando por tokens
+		*/
+
+			String linea = "uno dos tres cuatro";
+
+			//conveniente, algo lenta
+			String numeros[] = linea.split(" "); //separa por espacios
+
+			linea = "uno-dos-tres-cuatro--";
+
+			numeros = linea.split("-");//separa por guion
+			// numeros = [uno,dos,tres,cuatro, ,] <- queda con un elemento vacio
+
+			
+			//mas larga pero más rapida.
+
+			StringTokenizer str = new StringTokenizer(linea,"-"); //por omision el delimitador(segundo parametro) es espacio.
+			while(str.hasMoreTokens()){
+				String numero = str.nextToken();
+			}
+
+	}
+}
