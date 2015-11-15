@@ -1,10 +1,13 @@
+package maraton_nacional_2015;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.util.StringTokenizer;
 
-class nextpal{
+public class nextpal{
 	public static void main(String[] args) throws Exception{
+		
 		BufferedReader scan = new BufferedReader(new InputStreamReader(System.in));
 		String line;
 		StringTokenizer str;
