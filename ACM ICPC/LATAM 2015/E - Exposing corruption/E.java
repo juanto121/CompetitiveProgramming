@@ -1,3 +1,8 @@
+/*
+
+The Mighty Non Polynomial Squids
+
+*/
 package maraton_latam_2015;
 
 import java.io.BufferedReader;
