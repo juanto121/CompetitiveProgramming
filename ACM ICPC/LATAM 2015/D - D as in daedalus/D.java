@@ -1,8 +1,3 @@
-/*
-
-The Mighty Non Polynomial Squids
-
-*/
 package maraton_latam_2015;
 
 import java.io.BufferedReader;
@@ -22,10 +17,10 @@ public class D {
 		int n = Integer.parseInt(s[0]);
 		int m = Integer.parseInt(s[1]);
 		
-		int cartas[] = {1, 10, 100, 100, 10000};
+		int cartas[] = {1, 10, 100, 1000, 10000};
 		
 		int pg = 0;
-		int pp= 0;
+		int pp = 0;
 		
 		for(int i = 0; i < m; i++){
 			s = br.readLine().split(" ");
