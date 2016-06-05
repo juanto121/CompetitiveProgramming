@@ -26,20 +26,19 @@ using namespace std;
 int main(){
     int N;
     cin >> N;
-    vector<char> B(N);
+    vector<int> B(N);
     int odd = 0;
     int even = 0;
     bool in = false;
     
     for(int B_i = 0;B_i < N;B_i++){
        	cin >> B[B_i];
-	    if( (B[B_i]-'0') %2 != 0){
+	    if( B[B_i] %2 != 0){
 	        odd++;
 	        in = !in;
 	    }
 	    if(in)even++;
     }
-
     if(odd%2!=0){
         cout << "NO";
     }else{
