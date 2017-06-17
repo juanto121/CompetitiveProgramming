@@ -85,18 +85,7 @@ public class flip {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	}
 
 }
